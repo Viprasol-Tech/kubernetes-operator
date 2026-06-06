@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "k8s-operator"
-version = "0.1.0"
-description = "Kubernetes operator scaffold (Python/kopf) with a pure, tested reconcile loop."
+version = "0.2.0"
+description = "Kubernetes operator (Python/kopf) with a pure, tested reconcile loop managing Deployment, Service, and ConfigMap."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -43,7 +43,11 @@ select = ["E", "F", "I", "B", "UP", "W"]
 [tool.mypy]
 python_version = "3.10"
 strict = true
-files = ["src/k8s_operator/reconcile.py", "src/k8s_operator/__init__.py"]
+files = [
+    "src/k8s_operator/reconcile.py",
+    "src/k8s_operator/__init__.py",
+    "src/k8s_operator/handlers.py",
+]
 
 [[tool.mypy.overrides]]
 module = ["kopf", "kubernetes", "kubernetes.*"]

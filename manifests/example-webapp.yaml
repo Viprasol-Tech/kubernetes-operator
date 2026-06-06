@@ -7,3 +7,16 @@ spec:
   image: nginx:1.27
   replicas: 3
   port: 80
+  servicePort: 80
+  env:
+    LOG_LEVEL: info
+    TZ: UTC
+  config:
+    welcome.txt: "Hello from the Viprasol WebApp operator"
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi

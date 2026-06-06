@@ -39,9 +39,51 @@ spec:
                   maximum: 65535
                   default: 80
                   description: Container port exposed by the web container.
+                servicePort:
+                  type: integer
+                  minimum: 1
+                  maximum: 65535
+                  default: 80
+                  description: Port exposed by the child Service.
+                env:
+                  type: object
+                  additionalProperties:
+                    type: string
+                  description: Environment variables injected into the web container.
+                config:
+                  type: object
+                  additionalProperties:
+                    type: string
+                  description: Key/value data rendered into a child ConfigMap.
+                resources:
+                  type: object
+                  description: CPU/memory requests and limits for the web container.
+                  properties:
+                    requests:
+                      type: object
+                      additionalProperties:
+                        type: string
+                    limits:
+                      type: object
+                      additionalProperties:
+                        type: string
             status:
               type: object
               x-kubernetes-preserve-unknown-fields: true
+              properties:
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      status:
+                        type: string
+                      reason:
+                        type: string
+                      message:
+                        type: string
       additionalPrinterColumns:
         - name: Image
           type: string
